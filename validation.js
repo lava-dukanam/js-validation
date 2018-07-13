@@ -1,35 +1,35 @@
 export function checkForMissingData(input, config) {
   const inputKeys = Object.keys(input);
   const configKeys = Object.keys(config);
-  const errors = configKeys.reduce((cumm, data) => {
+  const errors = configKeys.reduce((accum, data) => {
     if (inputKeys.indexOf(data) === -1) {
-      return [...cumm, { for: data, errorType: 'data missing' }];
+      return [...accum, { for: data, errorType: 'data missing' }];
     }
-    return cumm;
+    return accum;
   }, []);
   return errors;
 }
 export function validate(input, config) {
   /* get keys from input and pass key, input and config */
-  const errors = Object.keys(input).reduce((cumm, value) => {
+  const errors = Object.keys(input).reduce((accum, value) => {
     if (Boolean(config[value])) {
-      return [...cumm, ...doValidation(value, input, config)];
+      return [...accum, ...doValidation(value, input, config)];
     }
     else {
-      return cumm;
+      return accum;
     }
   }, []);
   return errors;
 }
 
 function doValidation(key, input, config) {
-  const validation = Object.keys(config[key]).reduce((cumm, value) => {
+  const validation = Object.keys(config[key]).reduce((accum, value) => {
     const isValid = validator[value] && validator[value](input[key], config[key][value]);
     if (!isValid) {
       const errorType = value === 'type' ? config[key][value] : value
-      return [...cumm, { for: key, errorType, value: config[key][value] }]
+      return [...accum, { for: key, errorType, value: config[key][value] }]
     } else {
-      return isValid === 1 ? [...cumm, { for: key, message: `missing type config for ${key}` }] : cumm;
+      return isValid === 1 ? [...accum, { for: key, message: `missing type config for ${key}` }] : accum;
     }
   }, []);
   return validation;
