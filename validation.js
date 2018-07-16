@@ -1,4 +1,4 @@
-export function checkForMissingData(input, config) {
+exports.checkForMissingData = function (input, config) {
   const inputKeys = Object.keys(input);
   const configKeys = Object.keys(config);
   const errors = configKeys.reduce((accum, data) => {
@@ -9,7 +9,7 @@ export function checkForMissingData(input, config) {
   }, []);
   return errors;
 }
-export function validate(input, config) {
+exports.validate = function (input, config) {
   /* get keys from input and pass key, input and config */
   const errors = Object.keys(input).reduce((accum, value) => {
     if (Boolean(config[value])) {
@@ -43,6 +43,13 @@ const validator = {
       return 1;
     }
     return typedValidations[value](input)
+  },
+  regExp: (input, value) => {
+    try{
+      return new RegExp(value).test(input);
+    }catch(error){
+      throw new Error(error);
+    }
   },
 };
 
