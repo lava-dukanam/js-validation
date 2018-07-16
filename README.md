@@ -1,4 +1,5 @@
-# JavaScript validation made easy https://travis-ci.com/lava-dukanam/js-validation.svg?branch=master
+# JavaScript validation made easy 
+[![Build Status](https://travis-ci.com/lava-dukanam/js-validation.svg?branch=master)](https://travis-ci.com/lava-dukanam/js-validation)
 
 You can use this package to reduce boiler plate code for your validation.
 
