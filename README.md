@@ -1,4 +1,4 @@
-# JavaScript validation made easy
+# JavaScript validation made easy https://travis-ci.com/lava-dukanam/js-validation.svg?branch=master
 
 You can use this package to reduce boiler plate code for your validation.
 
